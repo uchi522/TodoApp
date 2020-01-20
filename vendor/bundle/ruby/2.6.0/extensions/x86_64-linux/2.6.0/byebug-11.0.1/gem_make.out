@@ -1,0 +1,19 @@
+current directory: /home/vagrant/app/rails_v6.0/todo/vendor/bundle/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+/home/vagrant/.rbenv/versions/2.6.5/bin/ruby -I /home/vagrant/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200118-24929-9thgy7.rb extconf.rb
+creating Makefile
+
+current directory: /home/vagrant/app/rails_v6.0/todo/vendor/bundle/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/vagrant/app/rails_v6.0/todo/vendor/bundle/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/vagrant/app/rails_v6.0/todo/vendor/bundle/ruby/2.6.0/gems/byebug-11.0.1/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20200118-24929-1sc73ii/byebug
