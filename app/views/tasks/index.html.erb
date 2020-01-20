@@ -2,7 +2,6 @@
     <h2 class="bg-light mt-3 py-1">TODOリスト</h2>
     <form method="POST" action="/tasks">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <input type="hidden" name="_method" value="PUT">
         <div class="form-row">
             <div class="form-group col-sm-9">
                 <input type="text" class="form-control" id="inputTitle" name="title" placeholder="タイトル">
@@ -13,25 +12,33 @@
         </div>
     </form>
 
-    <div class="alert alert-warning" role="alert" id="divAlert">
-        <span id="inputAlert"></span>
-    </div>
-
     <div class="table-responsive">
-        <table class="table table-hover" id="todoList">
+        <table class="table table-hover table-sm" id="todoList">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>タスク内容</th>
                     <th>状態</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @tasks.each do |task| %>
                     <tr>
-                    <td><%= task.id %></td>
-                    <td><%= task.title %></td>
-                    <td><%= task.status %></td>
+                        <td><%= task.title %></td>
+                        <td>
+                            <form method="POST" action="/tasks/<%= task.id %>">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                <input type="submit" id="btnDel"  class="btn btn-default" value=<%= task.status %>>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST" action="/tasks/<%= task.id %>">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                <input type="submit" id="btnDel"  class="btn btn-default" value="×">
+                            </form>
+                        </td>
                     </tr>
                 <% end %>
             </tbody>
