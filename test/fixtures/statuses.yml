@@ -1,8 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+one:
+  string: 
 
-<% 10.times do |n| %>
-taks_<%= n %>:
-  title: <%= "title_#{n}" %>
-  status_id: 0
-<% end %>
+two:
+  string: 

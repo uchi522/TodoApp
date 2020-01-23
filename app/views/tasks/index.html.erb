@@ -1,47 +1,19 @@
-<div class="container">
-    <h2 class="bg-light mt-3 py-1">TODOリスト</h2>
-    <form method="POST" action="/tasks">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <div class="form-row">
-            <div class="form-group col-sm-9">
-                <input type="text" class="form-control" id="inputTitle" name="title" placeholder="タイトル">
-            </div>
-            <div class="form-group col-sm-3">
-                <input type="submit" id="btnAdd" class="btn btn-primary mb-3" value="追加">
-            </div>
+<div class="container" id="app" ng-controller="TodoListCtrl" >
+    <div class="form-row w-100">
+        <div class="input-group my-3">
+            <input type="text" class="form-control" placeholder="..." aria-label="..." aria-describedby="addTaskBtn" ng-model="inputTodo">
+            <button type="submit" id="addBtn" class="btn btn-outline-secondary" ng-click="addTodo()">追加</button>
         </div>
-    </form>
-
-    <div class="table-responsive">
-        <table class="table table-hover table-sm" id="todoList">
-            <thead>
-                <tr>
-                    <th>タスク内容</th>
-                    <th>状態</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @tasks.each do |task| %>
-                    <tr>
-                        <td><%= task.title %></td>
-                        <td>
-                            <form method="POST" action="/tasks/<%= task.id %>">
-                                <input type="hidden" name="_method" value="PUT">
-                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                                <input type="submit" id="btnDel"  class="btn btn-default" value=<%= task.status %>>
-                            </form>
-                        </td>
-                        <td>
-                            <form method="POST" action="/tasks/<%= task.id %>">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                                <input type="submit" id="btnDel"  class="btn btn-default" value="×">
-                            </form>
-                        </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
+        <div class="w-100">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="todo in todos">
+                    <span class="d-block">
+                        <input type="checkbox" class="form-check-inline" id="statusCheck" ng-model="todo.done" ng-change="updateTodo(todo.id)"}>
+                        <label class="form-check-label" for="statusCheck">{{todo.title}}</label>
+                        <button class="btn btn-danger btn-sm float-sm-right" type="submit" ng-click="deleteTodo(todo.id)">×</button>
+                    </span>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

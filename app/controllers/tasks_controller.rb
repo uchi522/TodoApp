@@ -3,27 +3,28 @@
 # TasksController
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+
+  end
+
+  def show
+    @tasks = Task.all.order('id desc')
+    render json: @tasks
   end
 
   def store
-    task = Task.new
-    task.title = params[:title]
-    task.status = 'todo'
-    task.save
-    redirect_to '/tasks', notice: 'タスクを作成しました。'
+    data = params[:data]
+    Task.create!(title: data[:title], done: data[:done])
   end
 
   def update
+    data = params[:data]
     task = Task.find(params[:id])
-    task.status = 'done'
+    task.done = data[:done]
     task.save
-    redirect_to '/tasks', notice: 'タスク状態を更新しました。'
   end
 
   def destroy
     task = Task.find(params[:id])
     task.destroy
-    redirect_to '/tasks', notice: 'タスクを削除しました。'
   end
 end
